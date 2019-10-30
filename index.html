@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="en">
+  <head>
+   <title>JS Notes Player by Weng Fei Fung</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    
+    <style>
+    /* Components */
+    label {
+      display: block;
+    }
+    #textarea {
+      resize: none;
+      width: 95%;
+      height: 50%;
+      margin: auto 0;
+    }
+    #bpm {
+      width: 60px;
+    }
+    /* Reuseable Classes */
+    .spacer-20 {
+      width: 1px;
+      height: 20px;
+    }
+    </style>
+
+    <script>
+    /* This is NOT the engine code. This is the demo code. */
+    window.onload = () => {
+      var playUI = document.querySelector("#play");
+      playUI.addEventListener("click", ()=>{
+        // Init Note Player
+        var player1 = new NotesPlayer();
+
+        // Prepare notes and BPM
+        var textarea = document.querySelector("#textarea");
+        var notes = textarea.value.split(" ");
+        var bpm = parseInt( document.querySelector("#bpm").value );
+
+        for(i in notes) { 
+          let note = notes[i]; 
+          player1.play(note, 0, bpm); 
+          player1.pause(1000);
+        } // for each note
+      }); // onclick
+
+    } // window on load
+    </script>
+    
+</head>
+    <body>
+        <div class="container">
+          <h3>JS Notes Player Demo</h3>
+
+          <div class="form-group">
+              <label for="textarea">Notes</label>
+              <textarea id="textarea">C D F E C D G F C</textarea>
+              <!-- <textarea id="textarea">C D C D</textarea> -->
+          </div>
+          <div class="spacer-20"></div>
+
+          <div class="form-group">
+              <label for="bpm">BPM</label>
+              <input id="bpm" type="numer" value="60"></input>
+          </div>
+          <div class="spacer-20"></div>
+
+          <div><a id="play" href="javascript:void(0);">Play</a></div>
+
+        </div> <!-- /.container -->
+
+        <script src="js/js-notesplayer.js"></script>
+    </body>
+</html>
