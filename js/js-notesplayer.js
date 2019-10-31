@@ -93,7 +93,7 @@ NotesPlayer.prototype.pause = function(ms) {
   console.log(`Pausing for ${ms} milliseconds.`);
 
   const startTime = new Date().getTime();
-  for(var i = 0; i < 1e7; i++) {
+  for(var i = 0; i < 1e14; i++) { // originally 1e7 but 1e14 is more precise when 30bpm and you dont want overlapping beats
       let currentTime = new Date().getTime();
       if( (currentTime - startTime) > ms ) break;
   } // for
